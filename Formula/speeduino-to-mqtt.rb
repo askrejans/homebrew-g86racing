@@ -7,11 +7,11 @@ class SpeeduinoToMqtt < Formula
   on_macos do
     on_arm do
       url "https://g86racing.com/packages/mac/speeduino-to-mqtt_#{version}_macos-arm64.tar.gz"
-      sha256 "fb79004be7f8c999c93afd4f5053a77f729fefd339b5c71d72c9bff9b94d9c3c"
+      sha256 "9a6435acb26abc00baa90e60598a8b469991b4415cfa0cfa2808baed9923538d"
     end
     on_intel do
       url "https://g86racing.com/packages/mac/speeduino-to-mqtt_#{version}_macos-x86_64.tar.gz"
-      sha256 "c6506d8d15fe03a98bfe67e25ec62e89d90ca423b6b0de309a6b2ecc3227162d"
+      sha256 "87ae8a1f7c1b0db4e0b10e690dc679186b7cfbb62ad8c16318132070693c9797"
     end
   end
 
