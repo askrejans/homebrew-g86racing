@@ -1,26 +1,25 @@
 class EcuToMqtt < Formula
   desc "ECU to MQTT bridge (Speeduino, MegaSquirt, CAN profiles)"
   homepage "https://github.com/askrejans/ecu-to-mqtt"
-  version "0.3.3"
+  version "0.5.0"
   license "MIT"
 
-  # Renamed from speeduino-to-mqtt in 0.5.0. The URLs below still point at the
-  # last published speeduino-to-mqtt artifacts; update them (and the checksums)
-  # when ecu-to-mqtt packages are published.
+  # Tarballs are published to g86racing.com by
+  # infra/deploy/scripts/publish-packages.sh; scripts/bump-formula.sh refreshes
+  # the version and checksums below.
   on_macos do
     on_arm do
-      url "https://g86racing.com/packages/mac/speeduino-to-mqtt_#{version}_macos-arm64.tar.gz"
-      sha256 "9a6435acb26abc00baa90e60598a8b469991b4415cfa0cfa2808baed9923538d"
+      url "https://g86racing.com/packages/mac/ecu-to-mqtt_#{version}_macos-arm64.tar.gz"
+      sha256 "72fc593ae1cb469d9a1365b196d6860bf8f5abff5415c678b7a35dbbf042189c"
     end
     on_intel do
-      url "https://g86racing.com/packages/mac/speeduino-to-mqtt_#{version}_macos-x86_64.tar.gz"
-      sha256 "87ae8a1f7c1b0db4e0b10e690dc679186b7cfbb62ad8c16318132070693c9797"
+      url "https://g86racing.com/packages/mac/ecu-to-mqtt_#{version}_macos-x86_64.tar.gz"
+      sha256 "3e32deb76418a5a974f2c137ff2b85514b5420e0c582a896d045a2a610466225"
     end
   end
 
   def install
-    binary = File.exist?("ecu-to-mqtt") ? "ecu-to-mqtt" : "speeduino-to-mqtt"
-    bin.install binary => "ecu-to-mqtt"
+    bin.install "ecu-to-mqtt"
     (etc/"ecu-to-mqtt").mkpath
     etc.install "settings.toml.example" => "ecu-to-mqtt/settings.toml.example"
   end
