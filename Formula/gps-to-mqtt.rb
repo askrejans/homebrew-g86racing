@@ -1,17 +1,17 @@
 class GpsToMqtt < Formula
-  desc "GPS to MQTT bridge"
+  desc "Plug-and-play GNSS gateway: NMEA receivers to MQTT, HTTP, gpsd and NMEA"
   homepage "https://github.com/askrejans/gps-to-mqtt"
-  version "0.5.1"
-  license "MIT"
+  version "0.7.0"
+  license "GPL-3.0-only"
 
   on_macos do
     on_arm do
       url "https://g86racing.com/packages/mac/gps-to-mqtt_#{version}_macos-arm64.tar.gz"
-      sha256 "0ace64a35df339ae65eb95f5ca021fbf8a07376fa3814a0c173834908da41c59"
+      sha256 "8252bc6442bdf00232041de319f86aac67eab7f87862526422694c367e0d8e18"
     end
     on_intel do
       url "https://g86racing.com/packages/mac/gps-to-mqtt_#{version}_macos-x86_64.tar.gz"
-      sha256 "42473995f7c21e9d842b94581d934a0ae54ff898c7673cfcaf2f7cb34a6e679f"
+      sha256 "3df9968bef13454d579eb1e5655850b8a573fe4f3dc93de8efcb362c0242f3f1"
     end
   end
 
@@ -31,7 +31,7 @@ class GpsToMqtt < Formula
   end
 
   service do
-    run [opt_bin/"gps-to-mqtt",
+    run [opt_bin/"gps-to-mqtt", "--headless",
          "--config", "#{etc}/gps-to-mqtt/settings.toml"]
     keep_alive true
     log_path   var/"log/gps-to-mqtt.log"
@@ -39,6 +39,6 @@ class GpsToMqtt < Formula
   end
 
   test do
-    system "#{bin}/gps-to-mqtt", "--help"
+    assert_match version.to_s, shell_output("#{bin}/gps-to-mqtt --version")
   end
 end
