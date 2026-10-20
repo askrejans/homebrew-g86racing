@@ -1,8 +1,8 @@
 class EcuToMqtt < Formula
-  desc "ECU to MQTT bridge (Speeduino, MegaSquirt, CAN profiles)"
+  desc "Read-only ECU telemetry gateway: Speeduino, MegaSquirt, CAN to MQTT and HTTP"
   homepage "https://github.com/askrejans/ecu-to-mqtt"
-  version "0.5.0"
-  license "MIT"
+  version "0.7.0"
+  license "GPL-3.0-only"
 
   # Tarballs are published to g86racing.com by
   # infra/deploy/scripts/publish-packages.sh; scripts/bump-formula.sh refreshes
@@ -10,11 +10,11 @@ class EcuToMqtt < Formula
   on_macos do
     on_arm do
       url "https://g86racing.com/packages/mac/ecu-to-mqtt_#{version}_macos-arm64.tar.gz"
-      sha256 "72fc593ae1cb469d9a1365b196d6860bf8f5abff5415c678b7a35dbbf042189c"
+      sha256 "877bc677fda277b214a8362095f8a5d5bdd381c3da2665e236efbd382c29090f"
     end
     on_intel do
       url "https://g86racing.com/packages/mac/ecu-to-mqtt_#{version}_macos-x86_64.tar.gz"
-      sha256 "3e32deb76418a5a974f2c137ff2b85514b5420e0c582a896d045a2a610466225"
+      sha256 "d2a31b636548bf76419e98b1ad3e94d36fa8da3d0526e280c40f166ed43609af"
     end
   end
 
@@ -39,7 +39,7 @@ class EcuToMqtt < Formula
   end
 
   service do
-    run [opt_bin/"ecu-to-mqtt",
+    run [opt_bin/"ecu-to-mqtt", "--headless",
          "--config", "#{etc}/ecu-to-mqtt/settings.toml"]
     keep_alive true
     log_path   var/"log/ecu-to-mqtt.log"
@@ -47,6 +47,6 @@ class EcuToMqtt < Formula
   end
 
   test do
-    system "#{bin}/ecu-to-mqtt", "--help"
+    assert_match version.to_s, shell_output("#{bin}/ecu-to-mqtt --version")
   end
 end
