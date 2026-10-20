@@ -1,7 +1,7 @@
 class EcuToMqtt < Formula
   desc "Read-only ECU telemetry gateway: Speeduino, MegaSquirt, CAN to MQTT and HTTP"
   homepage "https://github.com/askrejans/ecu-to-mqtt"
-  version "0.7.1"
+  version "0.7.2"
   license "GPL-3.0-only"
 
   # Tarballs are published to g86racing.com by
@@ -10,11 +10,11 @@ class EcuToMqtt < Formula
   on_macos do
     on_arm do
       url "https://g86racing.com/packages/mac/ecu-to-mqtt_#{version}_macos-arm64.tar.gz"
-      sha256 "dccac340a326a5a3703b9ea85bce214a68a6c94d029f17d8cac16db53ae8ce3b"
+      sha256 "575f16350297236accdb98cab5b9750805df378229d07cbe31ed10c4396574d9"
     end
     on_intel do
       url "https://g86racing.com/packages/mac/ecu-to-mqtt_#{version}_macos-x86_64.tar.gz"
-      sha256 "f1aaf3beab04954241f876a644a317d1a77d19be4456ea1cd29f6bc39263c9ea"
+      sha256 "1bb738c7959d09b882067212f4f859323f1abe380348f3424da63293f6180b5c"
     end
   end
 
